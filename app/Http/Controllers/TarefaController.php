@@ -12,7 +12,9 @@ class TarefaController extends Controller
      */
     public function index()
     {
-        return view('tarefas.index');
+        return view('tarefas.index', [
+            'tarefas' => Tarefa::with('user')->latest()->get(),
+        ]);
     }
 
     /**
