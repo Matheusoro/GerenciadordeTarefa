@@ -80,6 +80,10 @@ class TarefaController extends Controller
      */
     public function destroy(Tarefa $tarefa)
     {
-        //
+        $this->authorize('delete', $tarefa);
+
+        $tarefa->delete();
+
+        return redirect(route('tarefas.index'));
     }
 }

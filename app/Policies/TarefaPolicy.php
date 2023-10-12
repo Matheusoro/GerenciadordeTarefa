@@ -45,7 +45,7 @@ class TarefaPolicy
      */
     public function delete(User $user, Tarefa $tarefa): bool
     {
-        //
+        return $this->update($user, $tarefa);
     }
 
     /**
