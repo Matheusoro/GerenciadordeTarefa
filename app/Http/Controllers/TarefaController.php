@@ -52,7 +52,11 @@ class TarefaController extends Controller
      */
     public function edit(Tarefa $tarefa)
     {
-        //
+        $this->authorize('update', $tarefa);
+
+        return view('tarefas.edit', [
+            'tarefa' => $tarefa,
+        ]);
     }
 
     /**
@@ -60,7 +64,15 @@ class TarefaController extends Controller
      */
     public function update(Request $request, Tarefa $tarefa)
     {
-        //
+        $this->authorize('update', $tarefa);
+
+        $validated = $request->validate([
+            'message' => 'required|string|max:255',
+        ]);
+
+        $tarefa->update($validated);
+
+        return redirect(route('tarefas.index'));
     }
 
     /**
